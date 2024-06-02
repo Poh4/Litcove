@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher_foreground"
+            android:contentDescription="@string/app_icon"
             android:background="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +100,7 @@
             android:paddingVertical="16dp"
             android:paddingHorizontal="48dp"
             android:text="@string/register"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +134,8 @@
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewOr" />
+            app:layout_constraintTop_toBottomOf="@id/textViewOr"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/textViewLoginPrompt"
