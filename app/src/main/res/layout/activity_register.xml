@@ -128,7 +128,7 @@
             app:strokeColor="@android:color/black"
             app:strokeWidth="1dp"
             android:drawableLeft="@drawable/ic_google"
-            android:text="@string/register_google"
+            android:text="@string/continue_with_google"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@android:color/black"

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "837581286912",
+    "project_id": "litcove-8944c",
+    "storage_bucket": "litcove-8944c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837581286912:android:f23b1214f50ed8cefe32e5",
+        "android_client_info": {
+          "package_name": "com.litcove.litcove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837581286912-kbim1kceq5uvs8s849vsald1ontt27uu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.litcove.litcove",
+            "certificate_hash": "0f2ff72e69a0c6292366e5de4092cae33ae39556"
+          }
+        },
+        {
+          "client_id": "837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwuL23MKfEn4gA_L9BnRVjSgbi6U5bQ1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

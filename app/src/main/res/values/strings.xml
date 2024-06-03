@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">LitCove</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
@@ -13,6 +13,13 @@
     <string name="tnc_prompt">By continuing, you agree to our <b><a href="litcove://tnc">Terms and Conditions</a></b> and <b><a href="litcove://privacy">Privacy Policy</a></b>.</string>
     <string name="register">Register</string>
     <string name="or">or</string>
-    <string name="register_google">Continue with Google</string>
+    <string name="continue_with_google">Continue with Google</string>
     <string name="app_icon">Application icon</string>
+    <string name="web_client_id" tools:ignore="TypographyDashes">837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com</string>
+    <string name="error_registering_with_google">Error registering with Google</string>
+    <string name="unexpected_type_of_credential">Unexpected type of credential</string>
+    <string name="error_parsing_google_id_token">Error parsing Google ID token</string>
+    <string name="authentication_successful">Authentication successful.</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="logout">Logout</string>
 </resources>

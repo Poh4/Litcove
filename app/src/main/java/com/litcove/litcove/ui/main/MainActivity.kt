@@ -10,14 +10,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.ActivityMainBinding
 import com.litcove.litcove.ui.authentication.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
+    private lateinit var binding: ActivityMainBinding
     private lateinit var toolbar: Toolbar
     private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
@@ -25,6 +29,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        auth = Firebase.auth
+        val firebaseUser = auth.currentUser
+
+        if (firebaseUser == null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
         viewModel = MainViewModel()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -44,7 +57,5 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
     }
 }
