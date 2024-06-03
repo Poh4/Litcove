@@ -1,5 +1,6 @@
 package com.litcove.litcove.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +12,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.ActivityMainBinding
+import com.litcove.litcove.ui.authentication.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainViewModel
     private lateinit var toolbar: Toolbar
     private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewModel = MainViewModel()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -40,5 +44,7 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
