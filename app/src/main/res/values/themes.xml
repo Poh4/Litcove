@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.LitCove" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/litcovePrimary</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/sf_pro_regular</item>
+    </style>
+</resources>
