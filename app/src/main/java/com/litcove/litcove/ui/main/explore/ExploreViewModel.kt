@@ -1,13 +1,13 @@
-package com.litcove.litcove.ui.main.search
+package com.litcove.litcove.ui.main.explore
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SearchViewModel : ViewModel() {
+class ExploreViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is search Fragment"
+        value = "This is explore Fragment"
     }
     val text: LiveData<String> = _text
 }

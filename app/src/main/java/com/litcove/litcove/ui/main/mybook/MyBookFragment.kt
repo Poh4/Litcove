@@ -1,4 +1,4 @@
-package com.litcove.litcove.ui.main.home
+package com.litcove.litcove.ui.main.mybook
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.litcove.litcove.databinding.FragmentHomeBinding
+import com.litcove.litcove.databinding.FragmentMyBookBinding
 
-class HomeFragment : Fragment() {
+class MyBookFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMyBookBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+        val myBookViewModel =
+            ViewModelProvider(this)[MyBookViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMyBookBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textMyBook
+        myBookViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

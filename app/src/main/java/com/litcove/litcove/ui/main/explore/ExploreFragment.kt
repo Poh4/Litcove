@@ -1,4 +1,4 @@
-package com.litcove.litcove.ui.main.search
+package com.litcove.litcove.ui.main.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.litcove.litcove.databinding.FragmentSearchBinding
+import com.litcove.litcove.databinding.FragmentExploreBinding
 
-class SearchFragment : Fragment() {
+class ExploreFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: FragmentExploreBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val searchViewModel =
-            ViewModelProvider(this)[SearchViewModel::class.java]
+        val exploreViewModel =
+            ViewModelProvider(this)[ExploreViewModel::class.java]
 
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSearch
-        searchViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textExplore
+        exploreViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

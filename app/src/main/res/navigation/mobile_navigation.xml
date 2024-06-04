@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_explore">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.litcove.litcove.ui.main.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_explore"
+        android:name="com.litcove.litcove.ui.main.explore.ExploreFragment"
+        android:label="@string/title_explore"
+        tools:layout="@layout/fragment_explore" />
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.litcove.litcove.ui.main.search.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/navigation_my_book"
+        android:name="com.litcove.litcove.ui.main.mybook.MyBookFragment"
+        android:label="@string/title_my_book"
+        tools:layout="@layout/fragment_my_book" />
 
     <fragment
         android:id="@+id/navigation_profile"
