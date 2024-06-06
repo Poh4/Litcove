@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.litcove.litcove.databinding.FragmentProfileBinding
 import com.litcove.litcove.ui.authentication.LoginActivity
@@ -35,14 +37,27 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textProfile
-        profileViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val imageProfile = binding.imageProfile
+        profileViewModel.imageProfile.observe(viewLifecycleOwner) {
+            Glide.with(this)
+                .load(it)
+                .into(imageProfile)
         }
 
-        val buttonLogout = binding.btnLogout
+        val textName: TextView = binding.textName
+        profileViewModel.textName.observe(viewLifecycleOwner) {
+            textName.text = it
+        }
+
+        val buttonLogout = binding.buttonLogout
         buttonLogout.setOnClickListener {
             logout()
+        }
+
+        profileViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            if (errorMessage != null) {
+                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+            }
         }
         return root
     }
