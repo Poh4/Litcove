@@ -31,6 +31,9 @@ data class Name(
 @Parcelize
 data class Login(
 
+	@field:SerializedName("username")
+	val username: String,
+
 	@field:SerializedName("password")
 	val password: String
 ) : Parcelable
@@ -40,6 +43,13 @@ data class Dob(
 
 	@field:SerializedName("age")
 	val age: Int
+) : Parcelable
+
+@Parcelize
+data class Registered(
+
+	@field:SerializedName("date")
+	val date: String,
 ) : Parcelable
 
 @Parcelize
@@ -53,6 +63,9 @@ data class ResultsItem(
 
 	@field:SerializedName("dob")
 	val dob: Dob,
+
+	@field:SerializedName("registered")
+	val registered: Registered,
 
 	@field:SerializedName("name")
 	val name: Name,
