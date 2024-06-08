@@ -38,5 +38,6 @@
     <string name="no">No</string>
     <string name="are_you_sure_you_want_to_delete_your_account_this_action_cannot_be_undone">Are you sure you want to delete your account? This action cannot be undone.</string>
     <string name="failed_to_delete_account">Failed to delete account.</string>
-    <string name="account_deleted_successfully">Account deleted successfully.</string>
+    <string name="account_deleted_successfully_theme_setting_cleared">Account deleted successfully. Theme setting cleared.</string>
+    <string name="logged_out_successfully_theme_setting_cleared">Logged out successfully. Theme setting cleared.</string>
 </resources>

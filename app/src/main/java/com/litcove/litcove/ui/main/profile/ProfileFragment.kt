@@ -11,16 +11,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentProfileBinding
 import com.litcove.litcove.ui.authentication.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
+
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     private var _binding: FragmentProfileBinding? = null
 
@@ -33,11 +38,9 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        profileViewModel.loadThemeSetting()
 
         val imageProfile = binding.imageProfile
         profileViewModel.imageProfile.observe(viewLifecycleOwner) {
@@ -59,6 +62,17 @@ class ProfileFragment : Fragment() {
         val textJoinedSince: TextView = binding.textJoinedSince
         profileViewModel.textJoinedSince.observe(viewLifecycleOwner) {
             textJoinedSince.text = it
+        }
+
+        val switchTheme: MaterialSwitch = binding.switchTheme
+        profileViewModel.isDarkMode.observe(viewLifecycleOwner) { isChecked ->
+            if (isChecked != null) {
+                switchTheme.isChecked = isChecked
+            }
+        }
+        switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            switchTheme.isChecked = isChecked
+            profileViewModel.saveThemeSetting(switchTheme.isChecked)
         }
 
         val buttonLogout = binding.buttonLogout
@@ -101,6 +115,9 @@ class ProfileFragment : Fragment() {
             val auth = FirebaseAuth.getInstance()
             auth.signOut()
             credentialManager.clearCredentialState(ClearCredentialStateRequest())
+            profileViewModel.clearThemeSetting()
+            Toast.makeText(context,
+                getString(R.string.logged_out_successfully_theme_setting_cleared), Toast.LENGTH_LONG).show()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }
@@ -117,12 +134,13 @@ class ProfileFragment : Fragment() {
             .show()
     }
 
-    fun deleteAccount() {
+    private fun deleteAccount() {
         val user = FirebaseAuth.getInstance().currentUser
         user?.delete()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                profileViewModel.clearThemeSetting()
                 Toast.makeText(context,
-                    getString(R.string.account_deleted_successfully), Toast.LENGTH_LONG).show()
+                    getString(R.string.account_deleted_successfully_theme_setting_cleared), Toast.LENGTH_LONG).show()
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 activity?.finish()
             } else {
