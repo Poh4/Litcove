@@ -2,6 +2,7 @@ package com.litcove.litcove.ui.main.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.litcove.litcove.R
@@ -73,6 +75,11 @@ class ProfileFragment : Fragment() {
         switchTheme.setOnCheckedChangeListener { _, isChecked ->
             switchTheme.isChecked = isChecked
             profileViewModel.saveThemeSetting(switchTheme.isChecked)
+        }
+
+        val buttonChangeLanguage: MaterialButton = binding.buttonChangeLanguage
+        buttonChangeLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
 
         val buttonLogout = binding.buttonLogout
