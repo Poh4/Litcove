@@ -41,4 +41,7 @@
     <string name="failed_to_delete_account">Gagal menghapus akun.</string>
     <string name="account_deleted_successfully_theme_setting_cleared">Akun berhasil dihapus. Pengaturan tema dibersihkan.</string>
     <string name="logged_out_successfully_theme_setting_cleared">Berhasil keluar. Pengaturan tema dibersihkan.</string>
+    <string name="recommendation">Rekomendasi</string>
+    <string name="recommended_book_image">Gambar Buku yang Direkomendasikan</string>
+    <string name="joined_since">Bergabung sejak</string>
 </resources>

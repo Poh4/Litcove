@@ -80,7 +80,7 @@ class ProfileViewModel @Inject constructor(
                     _imageProfile.value = user.picture.large
                     _textUsername.value = "@${user.login.username}"
                     _textName.value = "${user.name.first} ${user.name.last}"
-                    _textJoinedSince.value = "Joined since ${formatDate(user.registered.date)}"
+                    _textJoinedSince.value = formatDate(user.registered.date).toString()
                 } else {
                     _errorMessage.value = "Failed to load user data: ${response.errorBody()?.string()}"
                 }

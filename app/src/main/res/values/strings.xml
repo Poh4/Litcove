@@ -40,4 +40,7 @@
     <string name="failed_to_delete_account">Failed to delete account.</string>
     <string name="account_deleted_successfully_theme_setting_cleared">Account deleted successfully. Theme setting cleared.</string>
     <string name="logged_out_successfully_theme_setting_cleared">Logged out successfully. Theme setting cleared.</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="recommended_book_image">Recommended Book</string>
+    <string name="joined_since">Joined since</string>
 </resources>

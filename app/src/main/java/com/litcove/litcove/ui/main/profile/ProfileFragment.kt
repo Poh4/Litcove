@@ -62,8 +62,8 @@ class ProfileFragment : Fragment() {
         }
 
         val textJoinedSince: TextView = binding.textJoinedSince
-        profileViewModel.textJoinedSince.observe(viewLifecycleOwner) {
-            textJoinedSince.text = it
+        profileViewModel.textJoinedSince.observe(viewLifecycleOwner) { joinedSince ->
+            "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = joinedSince }
         }
 
         val switchTheme: MaterialSwitch = binding.switchTheme
