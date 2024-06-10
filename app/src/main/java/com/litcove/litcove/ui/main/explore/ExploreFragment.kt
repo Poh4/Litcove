@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.litcove.litcove.databinding.FragmentExploreBinding
 import com.litcove.litcove.utils.HorizontalSpacingItemDecoration
 
@@ -31,25 +33,14 @@ class ExploreFragment : Fragment() {
         val root: View = binding.root
 
         val tabLayout: TabLayout = binding.tabLayout
+        val viewPager: ViewPager2 = binding.viewPager
         val genres = arrayOf("Romance", "Comedy", "Fiction", "Horror")
 
-        for (genre in genres) {
-            tabLayout.addTab(tabLayout.newTab().setText(genre))
-        }
+        viewPager.adapter = GenrePagerAdapter(this, genres)
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // Ganti genre berdasarkan tab yang dipilih
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // Opsional: lakukan sesuatu saat tab tidak lagi dipilih
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                // Opsional: lakukan sesuatu saat tab dipilih kembali
-            }
-        })
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = genres[position]
+        }.attach()
 
         val recommendations = mutableListOf<String>()
         for (i in 1..10) {

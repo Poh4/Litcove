@@ -44,4 +44,5 @@
     <string name="recommendation">Rekomendasi</string>
     <string name="recommended_book_image">Gambar Buku yang Direkomendasikan</string>
     <string name="joined_since">Bergabung sejak</string>
+    <string name="book_cover">Sampul buku</string>
 </resources>
