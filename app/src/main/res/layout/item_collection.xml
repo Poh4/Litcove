@@ -15,7 +15,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/imageViewGenre"
+            android:id="@+id/imageViewCollection"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
@@ -33,9 +33,9 @@
             tools:text="Title"
             android:textStyle="bold"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintStart_toEndOf="@id/imageViewGenre"
+            app:layout_constraintStart_toEndOf="@id/imageViewCollection"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imageViewGenre" />
+            app:layout_constraintTop_toTopOf="@id/imageViewCollection" />
 
         <TextView
             android:id="@+id/textViewAuthor"
@@ -44,7 +44,7 @@
             android:layout_marginStart="16dp"
             tools:text="Author"
             android:textAppearance="?attr/textAppearanceBody2"
-            app:layout_constraintStart_toEndOf="@id/imageViewGenre"
+            app:layout_constraintStart_toEndOf="@id/imageViewCollection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
@@ -58,7 +58,7 @@
             android:textColor="?attr/colorAccent"
             android:maxLines="4"
             android:ellipsize="end"
-            app:layout_constraintStart_toEndOf="@id/imageViewGenre"
+            app:layout_constraintStart_toEndOf="@id/imageViewCollection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAuthor" />
 

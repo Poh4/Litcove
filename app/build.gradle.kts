@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.circleimageview)
     implementation(libs.converter.gson)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.dynamic.links)
+    implementation(libs.firebase.analytics)
     implementation(libs.glide)
     implementation(libs.googleid)
     implementation(libs.gson)

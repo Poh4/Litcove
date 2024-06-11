@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "837581286912",
-    "project_id": "litcove-8944c",
-    "storage_bucket": "litcove-8944c.appspot.com"
+    "project_number": "354015236284",
+    "project_id": "litcove",
+    "storage_bucket": "litcove.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:837581286912:android:f23b1214f50ed8cefe32e5",
+        "mobilesdk_app_id": "1:354015236284:android:d6a23d761f25b99d9500b9",
         "android_client_info": {
           "package_name": "com.litcove.litcove"
         }
       },
       "oauth_client": [
         {
-          "client_id": "837581286912-kbim1kceq5uvs8s849vsald1ontt27uu.apps.googleusercontent.com",
+          "client_id": "354015236284-ch47tver6oh5nij4oboc6b3ov1q3sjm9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.litcove.litcove",
-            "certificate_hash": "0f2ff72e69a0c6292366e5de4092cae33ae39556"
+            "certificate_hash": "4b4590c1f25f00433ce2f465dffb6d3e4354fe59"
           }
         },
         {
-          "client_id": "837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com",
+          "client_id": "354015236284-5f205keat6pr0ndva64qv2ak36anlke2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwuL23MKfEn4gA_L9BnRVjSgbi6U5bQ1o"
+          "current_key": "AIzaSyBEzCmXc2z8l6x8OgPBCfGFFlID8X_6nr8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com",
+              "client_id": "354015236284-5f205keat6pr0ndva64qv2ak36anlke2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

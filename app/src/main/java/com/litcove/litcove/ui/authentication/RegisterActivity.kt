@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
             finish()
         }
     }

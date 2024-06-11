@@ -32,16 +32,6 @@ class ExploreFragment : Fragment() {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val tabLayout: TabLayout = binding.tabLayout
-        val viewPager: ViewPager2 = binding.viewPager
-        val genres = arrayOf("Romance", "Comedy", "Fiction", "Horror")
-
-        viewPager.adapter = GenrePagerAdapter(this, genres)
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = genres[position]
-        }.attach()
-
         val recommendations = mutableListOf<String>()
         for (i in 1..10) {
             recommendations.add("https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg")
@@ -51,6 +41,16 @@ class ExploreFragment : Fragment() {
 
         val horizontalSpacingItemDecoration = HorizontalSpacingItemDecoration(dpToPx(requireContext()))
         binding.recyclerViewRecommendation.addItemDecoration(horizontalSpacingItemDecoration)
+
+        val tabLayout: TabLayout = binding.tabLayout
+        val viewPager: ViewPager2 = binding.viewPager
+        val genres = arrayOf("Romance", "Comedy", "Fiction", "Horror")
+
+        viewPager.adapter = GenrePagerAdapter(this, genres)
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = genres[position]
+        }.attach()
 
         return root
     }

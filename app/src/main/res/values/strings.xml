@@ -15,7 +15,7 @@
     <string name="or">or</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="app_icon">Application icon</string>
-    <string name="web_client_id" tools:ignore="TypographyDashes">837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com</string>
+    <string name="web_client_id" tools:ignore="TypographyDashes">354015236284-5f205keat6pr0ndva64qv2ak36anlke2.apps.googleusercontent.com</string>
     <string name="error_registering_with_google">Error registering with Google</string>
     <string name="unexpected_type_of_credential">Unexpected type of credential</string>
     <string name="error_parsing_google_id_token">Error parsing Google ID token</string>
