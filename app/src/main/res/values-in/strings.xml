@@ -45,4 +45,8 @@
     <string name="recommended_book_image">Gambar Buku yang Direkomendasikan</string>
     <string name="joined_since">Bergabung sejak</string>
     <string name="book_cover">Sampul buku</string>
+    <string name="enter">Masukkan</string>
+    <string name="your_full_name">Nama Lengkap Anda</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="submit">Selesai</string>
 </resources>

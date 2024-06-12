@@ -44,4 +44,8 @@
     <string name="recommended_book_image">Recommended Book</string>
     <string name="joined_since">Joined since</string>
     <string name="book_cover">Book cover</string>
+    <string name="enter">Enter</string>
+    <string name="your_full_name">Your Full Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="submit">Submit</string>
 </resources>

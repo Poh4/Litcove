@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.litcove.litcove.databinding.ActivityRegisterBinding
-import com.litcove.litcove.ui.main.MainActivity
 
 class RegisterActivity : AppCompatActivity() {
 
