@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.dagger.hilt.android)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -27,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -44,11 +48,25 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.circleimageview)
+    implementation(libs.converter.gson)
+    implementation(libs.firebase.auth)
+    implementation(libs.glide)
+    implementation(libs.googleid)
+    implementation(libs.gson)
+    implementation(libs.hilt.android)
+    implementation(libs.logging.interceptor)
     implementation(libs.material)
+    implementation(libs.play.services.auth)
+    implementation(libs.retrofit)
+    kapt(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

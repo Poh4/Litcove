@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">LitCove</string>
+    <string name="title_explore">Jelajahi</string>
+    <string name="title_my_book">Buku Saya</string>
+    <string name="title_profile">Profil</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register_prompt">Tidak punya akun? <b><a href="litcove://register">Daftar sekarang</a>!</b></string>
+    <string name="login_prompt">Sudah punya akun? <b><a href="litcove://login">Masuk sekarang</a></b>!</string>
+    <string name="forgot_password_prompt">Lupa Kata Sandi? <b><a href="litcove://reset">Reset di sini</a>.</b></string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="tnc_prompt">Dengan melanjutkan, Anda menyetujui <b><a href="litcove://tnc">Syarat dan Ketentuan</a></b> kami dan <b><a href="litcove://privacy">Kebijakan Privasi</a></b> kami.</string>
+    <string name="register">Daftar</string>
+    <string name="or">atau</string>
+    <string name="continue_with_google">Lanjutkan dengan Google</string>
+    <string name="app_icon">Ikon Aplikasi</string>
+    <string name="web_client_id" tools:ignore="TypographyDashes">837581286912-34rqfucq29dkdi8i2jagt0ef7sd9k184.apps.googleusercontent.com</string>
+    <string name="error_registering_with_google">Kesalahan saat mendaftar dengan Google</string>
+    <string name="unexpected_type_of_credential">Jenis kredensial yang tidak terduga</string>
+    <string name="error_parsing_google_id_token">Kesalahan dalam mengurai token ID Google</string>
+    <string name="authentication_successful">Autentikasi berhasil.</string>
+    <string name="authentication_failed">Autentikasi gagal.</string>
+    <string name="logout">Keluar</string>
+    <string name="edit_profile">Edit Profil</string>
+    <string name="account">Akun</string>
+    <string name="change_password">Ubah Kata Sandi</string>
+    <string name="forgot_password">Lupa Kata Sandi</string>
+    <string name="setting">Pengaturan</string>
+    <string name="theme">Tema</string>
+    <string name="language">Bahasa</string>
+    <string name="help_center">Pusat Bantuan</string>
+    <string name="faq">FAQ</string>
+    <string name="bug_report">Laporan Bug</string>
+    <string name="delete_account">Hapus Akun</string>
+    <string name="are_you_sure_you_want_to_logout">Apakah Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="are_you_sure_you_want_to_delete_your_account_this_action_cannot_be_undone">Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="failed_to_delete_account">Gagal menghapus akun.</string>
+    <string name="account_deleted_successfully_theme_setting_cleared">Akun berhasil dihapus. Pengaturan tema dibersihkan.</string>
+    <string name="logged_out_successfully_theme_setting_cleared">Berhasil keluar. Pengaturan tema dibersihkan.</string>
+    <string name="recommendation">Rekomendasi</string>
+    <string name="recommended_book_image">Gambar Buku yang Direkomendasikan</string>
+    <string name="joined_since">Bergabung sejak</string>
+</resources>

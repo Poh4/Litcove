@@ -2,4 +2,5 @@
 <resources>
     <color name="litcovePrimary">#30C3C1</color>
     <color name="textColorLink">#2563EB</color>
+    <color name="containerBackground">#FFFFFF</color>
 </resources>
