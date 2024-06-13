@@ -49,4 +49,7 @@
     <string name="your_full_name">Nama Lengkap Anda</string>
     <string name="full_name">Nama Lengkap</string>
     <string name="submit">Selesai</string>
+    <string name="choose">Pilih</string>
+    <string name="your_interests">Minat Anda</string>
+    <string name="skip">Lewati</string>
 </resources>
