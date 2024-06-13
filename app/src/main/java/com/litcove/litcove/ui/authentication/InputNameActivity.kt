@@ -41,10 +41,11 @@ class InputNameActivity : AppCompatActivity() {
         binding.buttonSubmit.setOnClickListener {
             if (userId != null) {
                 val fullName = binding.inputFullName.text.toString().lowercase(Locale.getDefault())
-                val titleCaseName = fullName.split(" ").joinToString(" ") { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
+                val titleCaseName = fullName.split(" ").joinToString(" ") { name -> name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
                 viewModel.saveNameToFirestore(userId, titleCaseName,
                     onSuccess = {
                         Toast.makeText(this, "Name saved", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@InputNameActivity, ChooseInterestsActivity::class.java))
                     },
                     onFailure = { e ->
                         Toast.makeText(this, "Error saving name: $e", Toast.LENGTH_SHORT).show()

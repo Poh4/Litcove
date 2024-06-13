@@ -9,14 +9,10 @@ class InputNameViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
     fun saveNameToFirestore(userId: String, name: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val user = hashMapOf(
-            "name" to name
-        )
-
         viewModelScope.launch {
             db.collection("users")
                 .document(userId)
-                .set(user)
+                .update("name", name)
                 .addOnSuccessListener { onSuccess() }
                 .addOnFailureListener { e -> onFailure(e) }
         }
