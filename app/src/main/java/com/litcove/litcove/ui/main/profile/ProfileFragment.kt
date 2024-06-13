@@ -31,8 +31,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -45,17 +43,17 @@ class ProfileFragment : Fragment() {
         profileViewModel.loadThemeSetting()
 
         val imageProfile = binding.imageProfile
-        profileViewModel.imageProfile.observe(viewLifecycleOwner) {
-            Glide.with(this)
-                .load(it)
-                .into(imageProfile)
+        profileViewModel.imageProfile.observe(viewLifecycleOwner) { imageUrl ->
+            if (imageUrl.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(R.drawable.ic_no_profile)
+                    .into(imageProfile)
+            } else {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .into(imageProfile)
+            }
         }
-
-        val textUsername: TextView = binding.textUsername
-        profileViewModel.textUsername.observe(viewLifecycleOwner) {
-            textUsername.text = it
-        }
-
         val textName: TextView = binding.textName
         profileViewModel.textName.observe(viewLifecycleOwner) {
             textName.text = it
@@ -63,7 +61,7 @@ class ProfileFragment : Fragment() {
 
         val textJoinedSince: TextView = binding.textJoinedSince
         profileViewModel.textJoinedSince.observe(viewLifecycleOwner) { joinedSince ->
-            "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = joinedSince }
+            "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = it }
         }
 
         val switchTheme: MaterialSwitch = binding.switchTheme

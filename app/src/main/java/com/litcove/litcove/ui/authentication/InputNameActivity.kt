@@ -60,6 +60,7 @@ class InputNameActivity : AppCompatActivity() {
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser == null) {
             startActivity(Intent(this@InputNameActivity, LoginActivity::class.java))
+            finish()
         }
     }
 }

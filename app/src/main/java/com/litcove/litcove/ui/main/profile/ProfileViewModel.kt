@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.litcove.litcove.data.repository.PreferenceRepository
-import com.litcove.litcove.data.repository.UserRepository
-import com.litcove.litcove.data.response.UserResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
@@ -21,16 +19,11 @@ class ProfileViewModel @Inject constructor(
     private val preferenceRepository: PreferenceRepository
 ) : ViewModel() {
 
-    private val userRepository = UserRepository()
-
     private val _isDarkMode = MutableLiveData<Boolean?>()
     val isDarkMode: LiveData<Boolean?> = _isDarkMode
 
-    private val _imageProfile = MutableLiveData<String>()
-    val imageProfile: LiveData<String> = _imageProfile
-
-    private val _textUsername = MutableLiveData<String>()
-    val textUsername: LiveData<String> = _textUsername
+    private val _imageAvatar = MutableLiveData<String>()
+    val imageAvatar: LiveData<String> = _imageAvatar
 
     private val _textName = MutableLiveData<String>()
     val textName: LiveData<String> = _textName
@@ -45,10 +38,8 @@ class ProfileViewModel @Inject constructor(
         fetchUser()
     }
 
-    fun formatDate(dateString: String): String? {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    private fun formatDate(date: Date?): String? {
         val outputFormat = SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
-        val date = inputFormat.parse(dateString)
         return date?.let { outputFormat.format(it) }
     }
 
@@ -73,22 +64,27 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun fetchUser() {
-        userRepository.getUsers().enqueue(object : Callback<UserResponse> {
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val user = response.body()!!.results[0]
-                    _imageProfile.value = user.picture.large
-                    _textUsername.value = "@${user.login.username}"
-                    _textName.value = "${user.name.first} ${user.name.last}"
-                    _textJoinedSince.value = formatDate(user.registered.date).toString()
-                } else {
-                    _errorMessage.value = "Failed to load user data: ${response.errorBody()?.string()}"
-                }
-            }
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val db = FirebaseFirestore.getInstance()
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                _errorMessage.value = "Failed to load user data: ${t.message}"
-            }
-        })
+        userId?.let {
+            db.collection("users").document(it).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val avatar = document.getString("avatar")
+                        val name = document.getString("name")
+                        val createdAt = document.getTimestamp("createdAt")?.toDate()
+
+                        _imageAvatar.value = avatar ?: ""
+                        _textName.value = name ?: "No Name"
+                        _textJoinedSince.value = formatDate(createdAt).toString()
+                    } else {
+                        _errorMessage.value = "No such document"
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    _errorMessage.value = "Failed to load user data: ${exception.message}"
+                }
+        }
     }
 }

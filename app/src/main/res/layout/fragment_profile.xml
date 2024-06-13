@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageProfile"
+            android:id="@+id/imageAvatar"
             android:layout_width="128dp"
             android:layout_height="128dp"
             tools:src="@tools:sample/avatars"
@@ -36,19 +36,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
-
-        <TextView
-            android:id="@+id/textUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            tools:text="\@superbyachh"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
+            app:layout_constraintTop_toBottomOf="@+id/imageAvatar" />
 
         <TextView
             android:id="@+id/textJoinedSince"
@@ -60,7 +48,7 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/textName" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonEditProfile"
