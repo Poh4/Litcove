@@ -6,29 +6,25 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.litcove.litcove.databinding.ActivityInputNameBinding
 import java.util.Locale
 
 class InputNameActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+
     private lateinit var binding: ActivityInputNameBinding
     private val viewModel: InputNameViewModel by viewModels()
+    private val auth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
+
         binding = ActivityInputNameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentUser = auth.currentUser
-        val userId = currentUser?.uid
-
-        if (userId != null) {
-            viewModel.checkIfNameExists(userId,
+        auth.currentUser?.let {
+            viewModel.checkIfNameExists(it.uid,
                 onExists = {
                     startActivity(Intent(this@InputNameActivity, ChooseInterestsActivity::class.java))
                 },
@@ -39,10 +35,10 @@ class InputNameActivity : AppCompatActivity() {
         }
 
         binding.buttonSubmit.setOnClickListener {
-            if (userId != null) {
-                val fullName = binding.inputFullName.text.toString().lowercase(Locale.getDefault())
-                val titleCaseName = fullName.split(" ").joinToString(" ") { name -> name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
-                viewModel.saveNameToFirestore(userId, titleCaseName,
+            val fullName = binding.inputFullName.text.toString().lowercase(Locale.getDefault())
+            val titleCaseName = fullName.split(" ").joinToString(" ") { name -> name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
+            auth.currentUser?.let { it1 ->
+                viewModel.saveNameToFirestore(it1.uid, titleCaseName,
                     onSuccess = {
                         Toast.makeText(this, "Name saved", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@InputNameActivity, ChooseInterestsActivity::class.java))
@@ -52,15 +48,6 @@ class InputNameActivity : AppCompatActivity() {
                     }
                 )
             }
-        }
-
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser == null) {
-            startActivity(Intent(this@InputNameActivity, LoginActivity::class.java))
-            finish()
         }
     }
 }
