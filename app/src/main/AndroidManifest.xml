@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LitCove"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.authentication.ChooseInterestsActivity"
             android:exported="false" />
         <activity

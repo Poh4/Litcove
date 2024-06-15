@@ -52,4 +52,12 @@
     <string name="choose">Pilih</string>
     <string name="your_interests">Minat Anda</string>
     <string name="skip">Lewati</string>
+    <string name="update">Perbarui</string>
+    <string name="your_profile">Profil Anda</string>
+    <string name="change_avatar">Ubah Avatar</string>
+    <string name="error_saving_interests">Kesalahan saat menyimpan minat</string>
+    <string name="interests_updated">Minat diperbarui</string>
+    <string name="profile_updated_successfully">Profil berhasil diperbarui</string>
+    <string name="name_saved">Nama disimpan</string>
+    <string name="error_saving_name">Kesalahan saat menyimpan nama</string>
 </resources>

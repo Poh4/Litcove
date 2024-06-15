@@ -51,4 +51,12 @@
     <string name="choose">Choose</string>
     <string name="your_interests">Your Interests</string>
     <string name="skip">Skip</string>
+    <string name="update">Update</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="error_saving_interests">Error saving interests</string>
+    <string name="interests_updated">Interests updated</string>
+    <string name="profile_updated_successfully">Profile updated successfully</string>
+    <string name="name_saved">Name saved</string>
+    <string name="error_saving_name">Error saving name</string>
 </resources>

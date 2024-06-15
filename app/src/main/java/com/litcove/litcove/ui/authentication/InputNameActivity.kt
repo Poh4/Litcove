@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.litcove.litcove.R
 import com.litcove.litcove.databinding.ActivityInputNameBinding
 import java.util.Locale
 
@@ -40,11 +41,13 @@ class InputNameActivity : AppCompatActivity() {
             auth.currentUser?.let { it1 ->
                 viewModel.saveNameToFirestore(it1.uid, titleCaseName,
                     onSuccess = {
-                        Toast.makeText(this, "Name saved", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.name_saved), Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@InputNameActivity, ChooseInterestsActivity::class.java))
                     },
                     onFailure = { e ->
-                        Toast.makeText(this, "Error saving name: $e", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,
+                            getString(R.string.error_saving_name), Toast.LENGTH_SHORT).show()
+                        Log.e("InputNameActivity", "Error saving name", e)
                     }
                 )
             }

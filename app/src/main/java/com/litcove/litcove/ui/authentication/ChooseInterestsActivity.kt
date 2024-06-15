@@ -2,12 +2,14 @@ package com.litcove.litcove.ui.authentication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.litcove.litcove.R
 import com.litcove.litcove.databinding.ActivityChooseInterestsBinding
 import com.litcove.litcove.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +44,9 @@ class ChooseInterestsActivity : AppCompatActivity() {
                     finish()
                 },
                 onFailure = { e ->
-                    Toast.makeText(this, "Error saving interests: $e", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.error_saving_interests), Toast.LENGTH_SHORT).show()
+                    Log.e("ChooseInterestsActivity", "Error saving interests", e)
                 }
             ) }
         }
@@ -55,12 +59,14 @@ class ChooseInterestsActivity : AppCompatActivity() {
 
             auth.currentUser?.let { it1 -> viewModel.updateInterests(it1.uid, checkedCategories,
                 onSuccess = {
-                    Toast.makeText(this, "Interests updated", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.interests_updated), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@ChooseInterestsActivity, MainActivity::class.java))
                     finish()
                 },
                 onFailure = { e ->
-                    Toast.makeText(this, "Error saving interests: $e", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.error_saving_interests), Toast.LENGTH_SHORT).show()
+                    Log.e("ChooseInterestsActivity", "Error saving interests", e)
                 }
             ) }
         }

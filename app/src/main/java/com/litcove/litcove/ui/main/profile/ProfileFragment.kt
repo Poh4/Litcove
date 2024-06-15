@@ -42,18 +42,19 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
         profileViewModel.loadThemeSetting()
 
-        val imageProfile = binding.imageProfile
-        profileViewModel.imageProfile.observe(viewLifecycleOwner) { imageUrl ->
+        val imageAvatar = binding.imageAvatar
+        profileViewModel.imageAvatar.observe(viewLifecycleOwner) { imageUrl ->
             if (imageUrl.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(R.drawable.ic_no_profile)
-                    .into(imageProfile)
+                    .into(imageAvatar)
             } else {
                 Glide.with(this)
                     .load(imageUrl)
-                    .into(imageProfile)
+                    .into(imageAvatar)
             }
         }
+
         val textName: TextView = binding.textName
         profileViewModel.textName.observe(viewLifecycleOwner) {
             textName.text = it
@@ -62,6 +63,11 @@ class ProfileFragment : Fragment() {
         val textJoinedSince: TextView = binding.textJoinedSince
         profileViewModel.textJoinedSince.observe(viewLifecycleOwner) { joinedSince ->
             "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = it }
+        }
+
+        val buttonEditProfile: MaterialButton = binding.buttonEditProfile
+        buttonEditProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
         val switchTheme: MaterialSwitch = binding.switchTheme
@@ -90,12 +96,12 @@ class ProfileFragment : Fragment() {
             showDeleteAccountDialog()
         }
 
-        profileViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            if (errorMessage != null) {
-                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-            }
-        }
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        profileViewModel.fetchUser()
     }
 
     override fun onDestroyView() {

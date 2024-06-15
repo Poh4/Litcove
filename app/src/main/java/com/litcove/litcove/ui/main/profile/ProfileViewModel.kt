@@ -1,5 +1,6 @@
 package com.litcove.litcove.ui.main.profile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,9 +32,6 @@ class ProfileViewModel @Inject constructor(
     private val _textJoinedSince = MutableLiveData<String>()
     val textJoinedSince: LiveData<String> = _textJoinedSince
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
-
     init {
         fetchUser()
     }
@@ -63,7 +61,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private fun fetchUser() {
+    fun fetchUser() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         val db = FirebaseFirestore.getInstance()
 
@@ -79,11 +77,11 @@ class ProfileViewModel @Inject constructor(
                         _textName.value = name ?: "No Name"
                         _textJoinedSince.value = formatDate(createdAt).toString()
                     } else {
-                        _errorMessage.value = "No such document"
+                        Log.d("ProfileViewModel", "No such document")
                     }
                 }
                 .addOnFailureListener { exception ->
-                    _errorMessage.value = "Failed to load user data: ${exception.message}"
+                    Log.w("ProfileViewModel", "Error getting documents.", exception)
                 }
         }
     }
