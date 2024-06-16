@@ -44,13 +44,13 @@ class ExploreFragment : Fragment() {
 
         val tabLayout: TabLayout = binding.tabLayout
         val viewPager: ViewPager2 = binding.viewPager
-        val genres = arrayOf("Romance", "Comedy", "Fiction", "Horror")
 
-        viewPager.adapter = GenrePagerAdapter(this, genres)
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = genres[position]
-        }.attach()
+        exploreViewModel.interests.observe(viewLifecycleOwner) { interests ->
+            viewPager.adapter = GenrePagerAdapter(this, interests.toTypedArray())
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = interests[position]
+            }.attach()
+        }
 
         return root
     }

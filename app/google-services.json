@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "354015236284-r7ks7o9shqi3ljshcftm1498tgh9vvga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.litcove.litcove",
+            "certificate_hash": "3e51cc6344d44ebe592ca9cc4d0ba286e50293b8"
+          }
+        },
+        {
           "client_id": "354015236284-5f205keat6pr0ndva64qv2ak36anlke2.apps.googleusercontent.com",
           "client_type": 3
         }

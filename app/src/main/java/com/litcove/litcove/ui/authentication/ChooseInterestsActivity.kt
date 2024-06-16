@@ -3,13 +3,17 @@ package com.litcove.litcove.ui.authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.litcove.litcove.R
+import com.litcove.litcove.data.constants.Categories
 import com.litcove.litcove.databinding.ActivityChooseInterestsBinding
 import com.litcove.litcove.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,15 +31,41 @@ class ChooseInterestsActivity : AppCompatActivity() {
         binding = ActivityChooseInterestsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val categories = arrayOf("Comedy", "Science", "Comic", "Fiction", "Non-fiction", "Biography", "Autobiography", "Fantasy", "Horror", "Mystery", "Romance", "Science Fiction", "History", "Humor", "Adventure", "Thriller", "Drama", "Poetry", "Encyclopedia", "Dictionary", "Cookbook", "Children's", "Young Adult", "Adult", "Educational", "Reference", "Art", "Music", "Sports", "Travel")
-        for (category in categories) {
-            val checkBox = CheckBox(this).apply {
-                text = category
-                tag = category
-                textSize = 16f
+        val categories = Categories.bookCategories
+
+        binding.gridLayout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                // Remove the listener to ensure it's only called once
+                binding.gridLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                val gridLayoutWidth = binding.gridLayout.measuredWidth
+                val paddingInDp = 16
+                val paddingInPx = (paddingInDp * resources.displayMetrics.density).toInt()
+                val cardViewHeightInDp = 80 // Set this to a fixed value that suits your needs
+                val cardViewHeightInPx = (cardViewHeightInDp * resources.displayMetrics.density).toInt()
+
+                for (category in categories) {
+                    val checkBox = CheckBox(this@ChooseInterestsActivity).apply {
+                        text = category
+                        tag = category
+                        textSize = 16f
+                    }
+
+                    val cardView = MaterialCardView(this@ChooseInterestsActivity).apply {
+                        layoutParams = ViewGroup.LayoutParams(
+                            gridLayoutWidth / 2, // Set width to half of GridLayout's width
+                            cardViewHeightInPx // Set height to a fixed value
+                        )
+                        radius = 16f
+                        setContentPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx) // Set content padding to 16dp
+                        addView(checkBox)
+                    }
+
+                    binding.gridLayout.columnCount = 2 // Set column count to 2
+                    binding.gridLayout.addView(cardView)
+                }
             }
-            binding.gridLayout.addView(checkBox)
-        }
+        })
 
         binding.buttonSkip.setOnClickListener {
             auth.currentUser?.let { it1 -> viewModel.updateInterests(it1.uid, emptyList(),

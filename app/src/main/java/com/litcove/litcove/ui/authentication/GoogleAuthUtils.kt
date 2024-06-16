@@ -1,6 +1,7 @@
 package com.litcove.litcove.ui.authentication
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.credentials.CredentialManager
@@ -40,6 +41,7 @@ object GoogleAuthUtils {
             } catch (e: Exception) {
                 Toast.makeText(context,
                     context.getString(R.string.error_registering_with_google), Toast.LENGTH_SHORT).show()
+                Log.e("GoogleAuthUtils", "Error registering with Google: ${e.message}")
             }
         }
     }
