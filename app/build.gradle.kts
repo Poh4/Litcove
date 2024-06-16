@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.lottie)
     implementation(libs.material)
+    implementation(libs.androidx.paging.runtime)
     implementation(libs.play.services.auth)
     implementation(libs.retrofit)
     implementation(libs.firebase.storage.ktx)

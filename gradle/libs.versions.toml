@@ -25,6 +25,7 @@ navigationUiKtx = "2.7.7"
 activity = "1.9.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.0.0"
+pagingRuntime = "3.3.0"
 playServicesAuth = "21.2.0"
 credentials = "1.2.2"
 googleid = "1.1.0"
@@ -34,6 +35,7 @@ firebaseStorageKtx = "21.0.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }

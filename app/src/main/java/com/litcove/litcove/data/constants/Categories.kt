@@ -19,7 +19,7 @@ object Categories {
         "Family & Relationships",
         "Fiction",
         "Foreign Language Study",
-        "Games & activities",
+        "Games & Activities",
         "Gardening",
         "Health & Fitness",
         "History",

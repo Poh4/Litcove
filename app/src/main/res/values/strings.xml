@@ -59,4 +59,6 @@
     <string name="profile_updated_successfully">Profile updated successfully</string>
     <string name="name_saved">Name saved</string>
     <string name="error_saving_name">Error saving name</string>
+    <string name="retry">Retry</string>
+    <string name="error">Error</string>
 </resources>

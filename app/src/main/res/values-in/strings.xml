@@ -60,4 +60,6 @@
     <string name="profile_updated_successfully">Profil berhasil diperbarui</string>
     <string name="name_saved">Nama disimpan</string>
     <string name="error_saving_name">Kesalahan saat menyimpan nama</string>
+    <string name="retry">Coba lagi</string>
+    <string name="error">Error</string>
 </resources>

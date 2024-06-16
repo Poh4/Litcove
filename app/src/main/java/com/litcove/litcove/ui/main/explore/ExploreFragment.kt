@@ -20,6 +20,7 @@ class ExploreFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private var currentGenreFragment: GenreFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +46,19 @@ class ExploreFragment : Fragment() {
         val tabLayout: TabLayout = binding.tabLayout
         val viewPager: ViewPager2 = binding.viewPager
 
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                currentGenreFragment = (viewPager.adapter as GenrePagerAdapter).createFragment(position) as GenreFragment
+                if (currentGenreFragment?.isAdded == true) {
+                    currentGenreFragment?.viewModel?.refresh()
+                }
+            }
+        })
+
         exploreViewModel.interests.observe(viewLifecycleOwner) { interests ->
-            viewPager.adapter = GenrePagerAdapter(this, interests.toTypedArray())
+            viewPager.adapter = GenrePagerAdapter(requireActivity(), interests.toTypedArray())
+            viewPager.offscreenPageLimit = interests.size - 1
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = interests[position]
             }.attach()
