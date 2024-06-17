@@ -9,13 +9,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import com.litcove.litcove.data.model.Book
 import com.litcove.litcove.databinding.FragmentGenreBinding
 import com.litcove.litcove.utils.VerticalSpacingItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class GenreFragment : Fragment() {
+@AndroidEntryPoint
+class GenreFragment : Fragment(), GenreAdapter.OnBookClickListener {
     val viewModel: GenreViewModel by viewModels()
     private var _binding: FragmentGenreBinding? = null
     private val binding get() = _binding!!
@@ -35,7 +39,7 @@ class GenreFragment : Fragment() {
             Log.e("GenreFragment", "No genre argument provided")
         }
 
-        val genreAdapter = GenreAdapter()
+        val genreAdapter = GenreAdapter(this)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.booksFlow.collectLatest { pagingData ->
                 genreAdapter.submitData(pagingData)
@@ -55,9 +59,17 @@ class GenreFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Cancel any ongoing operations
         viewLifecycleOwner.lifecycleScope.cancel()
         _binding = null
+    }
+
+    override fun onBookClick(book: Book) {
+        val action = ExploreFragmentDirections.actionExploreFragmentToBookDetailsFragment(book)
+        try {
+            view?.findNavController()?.navigate(action)
+        } catch (e: Exception) {
+            Log.e("GenreFragment", "Navigation action could not be performed", e)
+        }
     }
 
     private fun dpToPx(context: Context): Int {

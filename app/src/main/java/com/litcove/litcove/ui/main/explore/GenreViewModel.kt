@@ -7,13 +7,17 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.litcove.litcove.data.BookPagingSource
 import com.litcove.litcove.data.repository.BookRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import javax.inject.Inject
 
-class GenreViewModel : ViewModel(){
-    private val repository = BookRepository()
+@HiltViewModel
+class GenreViewModel @Inject constructor(
+    private val repository: BookRepository
+) : ViewModel() {
     private val currentGenre = MutableStateFlow<String?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)
