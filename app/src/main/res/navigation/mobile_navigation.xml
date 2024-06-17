@@ -9,7 +9,12 @@
         android:id="@+id/navigation_explore"
         android:name="com.litcove.litcove.ui.main.explore.ExploreFragment"
         android:label="@string/title_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore" >
+
+        <action
+            android:id="@+id/actionExploreFragmentToBookDetailsFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_my_book"
@@ -22,4 +27,14 @@
         android:name="com.litcove.litcove.ui.main.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.litcove.litcove.ui.main.details.BookDetailsFragment"
+        android:label="@string/book_details"
+        tools:layout="@layout/fragment_book_details" >
+        <argument
+            android:name="book"
+            app:argType="com.litcove.litcove.data.model.Book" />
+    </fragment>
 </navigation>

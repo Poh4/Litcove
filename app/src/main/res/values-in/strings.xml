@@ -68,4 +68,8 @@
     <string name="password_cannot_be_empty">Kata sandi tidak boleh kosong</string>
     <string name="password_must_be_at_least_8_characters_long">Kata sandi harus setidaknya 8 karakter</string>
     <string name="passwords_do_not_match">Kata sandi tidak cocok</string>
+    <string name="book_details">Detail Buku</string>
+    <string name="description">Deskripsi</string>
+    <string name="review">Ulasan</string>
+    <string name="add_to_collection">Tambahkan ke Koleksi</string>
 </resources>

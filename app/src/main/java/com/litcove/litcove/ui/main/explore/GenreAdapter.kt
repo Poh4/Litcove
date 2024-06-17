@@ -9,7 +9,11 @@ import com.bumptech.glide.Glide
 import com.litcove.litcove.data.model.Book
 import com.litcove.litcove.databinding.ItemGenreBinding
 
-class GenreAdapter : PagingDataAdapter<Book, GenreAdapter.GenreViewHolder>(DIFF_CALLBACK) {
+class GenreAdapter(private val listener: OnBookClickListener) : PagingDataAdapter<Book, GenreAdapter.GenreViewHolder>(DIFF_CALLBACK) {
+
+    interface OnBookClickListener {
+        fun onBookClick(book: Book)
+    }
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Book>() {
@@ -23,7 +27,19 @@ class GenreAdapter : PagingDataAdapter<Book, GenreAdapter.GenreViewHolder>(DIFF_
         }
     }
 
-    class GenreViewHolder(private val binding: ItemGenreBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class GenreViewHolder(private val binding: ItemGenreBinding, private val adapter: GenreAdapter) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = adapter.getItem(position)
+                    if (item != null) {
+                        listener.onBookClick(item)
+                    }
+                }
+            }
+        }
+
         fun bind(book: Book) {
             Glide.with(binding.imageViewGenre.context)
                 .load(book.imageLinks.smallThumbnail)
@@ -37,7 +53,7 @@ class GenreAdapter : PagingDataAdapter<Book, GenreAdapter.GenreViewHolder>(DIFF_
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemGenreBinding.inflate(layoutInflater, parent, false)
-        return GenreViewHolder(binding)
+        return GenreViewHolder(binding, this)
     }
 
     override fun onBindViewHolder(holder: GenreViewHolder, position: Int) {

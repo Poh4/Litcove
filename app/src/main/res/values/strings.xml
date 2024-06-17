@@ -68,4 +68,8 @@
     <string name="password_cannot_be_empty">Password cannot be empty</string>
     <string name="password_must_be_at_least_8_characters_long">Password must be at least 8 characters long</string>
     <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="book_details">Book Details</string>
+    <string name="description">Description</string>
+    <string name="review">Review</string>
+    <string name="add_to_collection">Add to Collection</string>
 </resources>
