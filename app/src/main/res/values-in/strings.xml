@@ -61,5 +61,11 @@
     <string name="name_saved">Nama disimpan</string>
     <string name="error_saving_name">Kesalahan saat menyimpan nama</string>
     <string name="retry">Coba lagi</string>
-    <string name="error">Error</string>
+    <string name="error">Error</string><string name="error_logging_in">Kesalahan saat masuk</string>
+    <string name="login_successful">Berhasil masuk</string>
+    <string name="email_cannot_be_empty">Email tidak boleh kosong</string>
+    <string name="invalid_email_format">Format email tidak valid</string>
+    <string name="password_cannot_be_empty">Kata sandi tidak boleh kosong</string>
+    <string name="password_must_be_at_least_8_characters_long">Kata sandi harus setidaknya 8 karakter</string>
+    <string name="passwords_do_not_match">Kata sandi tidak cocok</string>
 </resources>

@@ -58,7 +58,7 @@ class ExploreFragment : Fragment() {
 
         exploreViewModel.interests.observe(viewLifecycleOwner) { interests ->
             viewPager.adapter = GenrePagerAdapter(requireActivity(), interests.toTypedArray())
-            viewPager.offscreenPageLimit = interests.size - 1
+            viewPager.offscreenPageLimit = interests.size
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = interests[position]
             }.attach()

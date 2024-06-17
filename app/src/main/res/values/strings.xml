@@ -61,4 +61,11 @@
     <string name="error_saving_name">Error saving name</string>
     <string name="retry">Retry</string>
     <string name="error">Error</string>
+    <string name="error_logging_in">Error logging in</string>
+    <string name="login_successful">Login successful</string>
+    <string name="email_cannot_be_empty">Email cannot be empty</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="password_must_be_at_least_8_characters_long">Password must be at least 8 characters long</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
 </resources>
