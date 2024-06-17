@@ -10,8 +10,10 @@ app.use(bodyParser.json());
 
 const authRoutes = require("./routes/authRoutes");
 const testRoutes = require("./routes/testRoutes");
+const storyRoutes = require("./routes/storyRoutes");
 
 app.use("/auth", authRoutes);
+app.use("/api", storyRoutes);
 app.use("/test", testRoutes);
 
 app.get("/", (req, res) => {
