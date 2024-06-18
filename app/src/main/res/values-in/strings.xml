@@ -72,9 +72,11 @@
     <string name="description">Deskripsi</string>
     <string name="review">Ulasan</string>
     <string name="add_to_collection">Tambah ke Koleksi</string>
-    <string name="added_to_collection">Ditambahkan to Collection</string>
+    <string name="added_to_collection">Ditambahkan to Koleksi</string>
     <string name="removed_from_collection">Dihapus dari Koleksi</string>
     <string name="error_checking_book_in_collection">Kesalahan saat memeriksa buku dalam koleksi</string>
     <string name="error_adding_book_to_collection">Kesalahan saat menambahkan buku ke koleksi</string>
     <string name="error_removing_book_from_collection">Kesalahan saat menghapus buku dari koleksi</string>
+    <string name="added_to_history">Tambah ke Riwayat</string>
+    <string name="error_adding_book_to_history">Kesalahan saat menambahkan buku ke riwayat</string>
 </resources>
