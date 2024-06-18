@@ -16,17 +16,18 @@ class BookDetailsViewModel : ViewModel() {
         viewModelScope.launch {
             auth.currentUser?.let {
                 val bookDetails = mapOf(
-                    "bookId" to book.id,
+                    "bookId" to book.bookId,
                     "title" to book.title,
                     "authors" to book.authors,
                     "description" to book.description,
-                    "thumbnail" to book.imageLinks.thumbnail
+                    "thumbnail" to book.thumbnail,
+                    "addedAt" to System.currentTimeMillis()
                 )
 
                 db.collection("users")
                     .document(it.uid)
                     .collection("collections")
-                    .document(book.id)
+                    .document(book.bookId)
                     .set(bookDetails)
                     .addOnSuccessListener { onSuccess() }
                     .addOnFailureListener { e -> onFailure(e) }

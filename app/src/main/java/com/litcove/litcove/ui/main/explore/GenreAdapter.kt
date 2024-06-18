@@ -18,7 +18,7 @@ class GenreAdapter(private val listener: OnBookClickListener) : PagingDataAdapte
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Book>() {
             override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.bookId == newItem.bookId
             }
 
             override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
@@ -42,7 +42,7 @@ class GenreAdapter(private val listener: OnBookClickListener) : PagingDataAdapte
 
         fun bind(book: Book) {
             Glide.with(binding.imageViewGenre.context)
-                .load(book.imageLinks.smallThumbnail)
+                .load(book.thumbnail)
                 .into(binding.imageViewGenre)
             binding.textViewTitle.text = book.title
             binding.textViewAuthor.text = book.authors.joinToString(", ")

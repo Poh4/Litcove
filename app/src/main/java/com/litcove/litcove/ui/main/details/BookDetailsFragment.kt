@@ -2,11 +2,14 @@ package com.litcove.litcove.ui.main.details
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.litcove.litcove.R
@@ -46,10 +49,11 @@ class BookDetailsFragment : Fragment() {
                 descriptionTextView.text = book.description
 
                 Glide.with(this@BookDetailsFragment)
-                    .load(book.imageLinks.thumbnail)
+                    .load(book.thumbnail)
                     .into(coverImageView)
 
-                viewModel.isBookInCollection(book.id,
+                Log.d("BookDetailsFragment", "Book Id: $book")
+                viewModel.isBookInCollection(book.bookId,
                     onExist = {
                         buttonAddToCollection.setIconResource(R.drawable.ic_bookmark_filled)
                         buttonAddToCollection.text = getString(R.string.added_to_collection)
@@ -71,10 +75,22 @@ class BookDetailsFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val toolbarTitle = activity?.findViewById<TextView>(R.id.toolbar_title)
+        val params = toolbarTitle?.layoutParams as Toolbar.LayoutParams
+        params.gravity = Gravity.CENTER
+        toolbarTitle.layoutParams = params
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding?.coverImageView?.let { Glide.with(this).clear(it) }
         _binding = null
+        val toolbarTitle = activity?.findViewById<TextView>(R.id.toolbar_title)
+        val params = toolbarTitle?.layoutParams as Toolbar.LayoutParams
+        params.gravity = Gravity.START
+        toolbarTitle.layoutParams = params
     }
 
     private fun addBookToCollection(book: Book) {
@@ -95,7 +111,7 @@ class BookDetailsFragment : Fragment() {
     }
 
     private fun removeBookFromCollection(book: Book) {
-        viewModel.removeBookFromCollection(book.id,
+        viewModel.removeBookFromCollection(book.bookId,
             onSuccess = {
                 binding?.buttonAddToCollection?.setIconResource(R.drawable.ic_bookmark_outlined)
                 binding?.buttonAddToCollection?.text = getString(R.string.add_to_collection)

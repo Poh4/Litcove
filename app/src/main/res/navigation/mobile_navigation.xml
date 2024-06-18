@@ -20,7 +20,12 @@
         android:id="@+id/navigation_my_book"
         android:name="com.litcove.litcove.ui.main.mybook.MyBookFragment"
         android:label="@string/title_my_book"
-        tools:layout="@layout/fragment_my_book" />
+        tools:layout="@layout/fragment_my_book" >
+
+        <action
+            android:id="@+id/actionNavigationMyBookToDetailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
