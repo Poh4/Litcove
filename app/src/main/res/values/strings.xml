@@ -72,4 +72,9 @@
     <string name="description">Description</string>
     <string name="review">Review</string>
     <string name="add_to_collection">Add to Collection</string>
+    <string name="added_to_collection">Added to Collection</string>
+    <string name="removed_from_collection">Removed from Collection</string>
+    <string name="error_checking_book_in_collection">Error checking book in collection</string>
+    <string name="error_adding_book_to_collection">Error adding book to collection</string>
+    <string name="error_removing_book_from_collection">Error removing book from collection</string>
 </resources>
