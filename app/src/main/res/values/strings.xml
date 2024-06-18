@@ -77,4 +77,6 @@
     <string name="error_checking_book_in_collection">Error checking book in collection</string>
     <string name="error_adding_book_to_collection">Error adding book to collection</string>
     <string name="error_removing_book_from_collection">Error removing book from collection</string>
+    <string name="added_to_history">Added to history</string>
+    <string name="error_adding_book_to_history">Error adding book to history</string>
 </resources>

@@ -52,7 +52,8 @@ class BookDetailsFragment : Fragment() {
                     .load(book.thumbnail)
                     .into(coverImageView)
 
-                Log.d("BookDetailsFragment", "Book Id: $book")
+                addBookToHistory(book)
+
                 viewModel.isBookInCollection(book.bookId,
                     onExist = {
                         buttonAddToCollection.setIconResource(R.drawable.ic_bookmark_filled)
@@ -91,6 +92,17 @@ class BookDetailsFragment : Fragment() {
         val params = toolbarTitle?.layoutParams as Toolbar.LayoutParams
         params.gravity = Gravity.START
         toolbarTitle.layoutParams = params
+    }
+
+    private fun addBookToHistory(book: Book) {
+        viewModel.addBookToHistory(book,
+            onSuccess = {
+                Log.d("BookDetailsFragment", getString(R.string.added_to_history))
+            },
+            onFailure = { e ->
+                Log.e("BookDetailsFragment", getString(R.string.error_adding_book_to_history), e)
+            }
+        )
     }
 
     private fun addBookToCollection(book: Book) {

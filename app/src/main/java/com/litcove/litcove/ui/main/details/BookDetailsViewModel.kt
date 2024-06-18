@@ -12,6 +12,29 @@ class BookDetailsViewModel : ViewModel() {
     private val auth = Firebase.auth
     private val db = FirebaseFirestore.getInstance()
 
+    fun addBookToHistory(book: Book, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        viewModelScope.launch {
+            auth.currentUser?.let {
+                val bookDetails = mapOf(
+                    "bookId" to book.bookId,
+                    "title" to book.title,
+                    "authors" to book.authors,
+                    "description" to book.description,
+                    "thumbnail" to book.thumbnail,
+                    "addedAt" to System.currentTimeMillis()
+                )
+
+                db.collection("users")
+                    .document(it.uid)
+                    .collection("history")
+                    .document(book.bookId)
+                    .set(bookDetails)
+                    .addOnSuccessListener { onSuccess() }
+                    .addOnFailureListener { e -> onFailure(e) }
+            }
+        }
+    }
+
     fun addBookToCollection(book: Book, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch {
             auth.currentUser?.let {
