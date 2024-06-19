@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentExploreBinding
 import com.litcove.litcove.utils.HorizontalSpacingItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
@@ -32,6 +36,12 @@ class ExploreFragment : Fragment() {
 
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.searchInput.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                findNavController().navigate(R.id.actionExploreFragmentToSearchFragment)
+            }
+        }
 
         val recommendations = mutableListOf<String>()
         for (i in 1..10) {

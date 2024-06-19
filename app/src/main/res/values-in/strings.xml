@@ -79,4 +79,7 @@
     <string name="error_removing_book_from_collection">Kesalahan saat menghapus buku dari koleksi</string>
     <string name="added_to_history">Tambah ke Riwayat</string>
     <string name="error_adding_book_to_history">Kesalahan saat menambahkan buku ke riwayat</string>
+    <string name="search_hint">Cari buku berdasarkan judul, penulis, genre, dan lainnya…</string>
+    <string name="search">Cari</string>
+    <string name="searched_book_image">Gambar Buku yang Dicari</string>
 </resources>

@@ -41,7 +41,7 @@
     <string name="account_deleted_successfully_theme_setting_cleared">Account deleted successfully. Theme setting cleared.</string>
     <string name="logged_out_successfully_theme_setting_cleared">Logged out successfully. Theme setting cleared.</string>
     <string name="recommendation">Recommendation</string>
-    <string name="recommended_book_image">Recommended Book</string>
+    <string name="recommended_book_image">Recommended Book Image</string>
     <string name="joined_since">Joined since</string>
     <string name="book_cover">Book cover</string>
     <string name="enter">Enter</string>
@@ -79,4 +79,7 @@
     <string name="error_removing_book_from_collection">Error removing book from collection</string>
     <string name="added_to_history">Added to history</string>
     <string name="error_adding_book_to_history">Error adding book to history</string>
+    <string name="search_hint">Search books by title, author, genre, and etc…</string>
+    <string name="search">Search</string>
+    <string name="searched_book_image">Searched Book Image</string>
 </resources>

@@ -12,4 +12,11 @@ interface ApiService {
         @Query("startIndex") startIndex: Int,
         @Query("maxResults") maxResults: Int
     ): Response<BookResponse>
+
+    @GET("volumes")
+    suspend fun findBooks(
+        @Query("q") query: String,
+        @Query("startIndex") startIndex: Int,
+        @Query("maxResults") maxResults: Int
+    ): Response<BookResponse>
 }

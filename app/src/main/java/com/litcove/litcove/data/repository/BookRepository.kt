@@ -13,4 +13,9 @@ class BookRepository @Inject constructor(
         val validMaxResults = if (maxResults > 40) 40 else maxResults
         return apiService.getBooksBySubject(subject, startIndex, validMaxResults)
     }
+
+    suspend fun findBooks(query: String, startIndex: Int, maxResults: Int): Response<BookResponse> {
+        val validMaxResults = if (maxResults > 40) 40 else maxResults
+        return apiService.findBooks(query, startIndex, validMaxResults)
+    }
 }

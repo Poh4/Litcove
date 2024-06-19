@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidElementNotAllowed -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +14,11 @@
 
         <action
             android:id="@+id/actionExploreFragmentToBookDetailsFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/navigation_details" />
+
+        <action
+            android:id="@+id/actionExploreFragmentToSearchFragment"
+            app:destination="@id/navigation_search" />
     </fragment>
 
     <fragment
@@ -24,7 +29,7 @@
 
         <action
             android:id="@+id/actionNavigationMyBookToDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/navigation_details" />
     </fragment>
 
     <fragment
@@ -34,12 +39,22 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/navigation_details"
         android:name="com.litcove.litcove.ui.main.details.BookDetailsFragment"
         android:label="@string/book_details"
         tools:layout="@layout/fragment_book_details" >
         <argument
             android:name="book"
             app:argType="com.litcove.litcove.data.model.Book" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.litcove.litcove.ui.main.explore.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/actionSearchFragmentToBookDetailsFragment"
+            app:destination="@id/navigation_details" />
     </fragment>
 </navigation>
