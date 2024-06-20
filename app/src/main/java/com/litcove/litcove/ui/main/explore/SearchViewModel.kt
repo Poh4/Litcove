@@ -1,8 +1,5 @@
 package com.litcove.litcove.ui.main.explore
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.litcove.litcove.data.model.Book
@@ -17,16 +14,18 @@ class SearchViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ) : ViewModel() {
 
-    private val _searchResults = MutableLiveData<List<Book>>()
-    val searchResults: LiveData<List<Book>> get() = _searchResults
-
-    fun findBooks(query: String, startIndex: Int, maxResults: Int) {
+    fun findBooks(query: String, startIndex: Int, maxResults: Int, onExist: (List<Book>) -> Unit, onNotExist: (List<Book>?) -> Unit, onFailure: (Throwable) -> Unit) {
         viewModelScope.launch {
             val response = bookRepository.findBooks(query, startIndex, maxResults)
             if (response.isSuccessful) {
-                _searchResults.value = response.body()?.items?.mapNotNull { it?.let { item -> BookMapper.mapToBook(item) } }
+                val books = response.body()?.items?.mapNotNull { it?.let { item -> BookMapper.mapToBook(item) } }
+                if (books.isNullOrEmpty()) {
+                    onNotExist(books)
+                } else {
+                    onExist(books)
+                }
             } else {
-                Log.e("ExploreViewModel", "Failed to find books: ${response.errorBody()}")
+                onFailure(Throwable(response.message()))
             }
         }
     }

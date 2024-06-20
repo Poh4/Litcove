@@ -5,24 +5,33 @@ import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.litcove.litcove.R
 import com.litcove.litcove.data.model.Book
 import com.litcove.litcove.databinding.FragmentBookDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class BookDetailsFragment : Fragment() {
     private var _binding: FragmentBookDetailsBinding? = null
     private val binding get() = _binding
 
     private val viewModel: BookDetailsViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,10 +87,25 @@ class BookDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = activity?.findViewById<Toolbar>(R.id.toolbar)
+        toolbar?.let {
+            (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
         val toolbarTitle = activity?.findViewById<TextView>(R.id.toolbar_title)
         val params = toolbarTitle?.layoutParams as Toolbar.LayoutParams
         params.gravity = Gravity.CENTER
         toolbarTitle.layoutParams = params
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onDestroyView() {

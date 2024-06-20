@@ -82,4 +82,5 @@
     <string name="search_hint">Search books by title, author, genre, and etc…</string>
     <string name="search">Search</string>
     <string name="searched_book_image">Searched Book Image</string>
+    <string name="no_books_found">No books found</string>
 </resources>
