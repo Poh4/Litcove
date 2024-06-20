@@ -96,6 +96,25 @@
                 android:orientation="vertical" >
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonChangeInterests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/containerBackground"
+                    android:paddingVertical="16dp"
+                    android:text="@string/change_interests"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textAlignment="viewStart"
+                    android:textSize="16sp"
+                    app:icon="@drawable/ic_next"
+                    app:iconTint="?attr/colorOnSurfaceVariant"
+                    app:iconGravity="end" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeColor="?attr/colorOnSurfaceVariant" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonChangePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,25 +140,6 @@
                     android:backgroundTint="@color/containerBackground"
                     android:paddingVertical="16dp"
                     android:text="@string/forgot_password"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:textAlignment="viewStart"
-                    android:textSize="16sp"
-                    app:icon="@drawable/ic_next"
-                    app:iconTint="?attr/colorOnSurfaceVariant"
-                    app:iconGravity="end" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:strokeColor="?attr/colorOnSurfaceVariant" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonChangeInterests"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/containerBackground"
-                    android:paddingVertical="16dp"
-                    android:text="@string/change_interests"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textAlignment="viewStart"
                     android:textSize="16sp"

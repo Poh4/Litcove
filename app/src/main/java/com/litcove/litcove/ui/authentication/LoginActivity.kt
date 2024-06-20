@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this,
                             getString(R.string.error_logging_in), Toast.LENGTH_SHORT).show()
                         Log.d("LoginActivity", "Error logging in: $exception")
+                        loadingDialog.stopLoading()
                     }
                 )
             }

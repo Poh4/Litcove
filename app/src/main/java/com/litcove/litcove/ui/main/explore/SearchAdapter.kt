@@ -48,8 +48,4 @@ class SearchAdapter(private val listener : OnBookClickListener) : ListAdapter<Bo
         val book = getItem(position)
         holder.bind(book, listener)
     }
-
-    fun setBooks(searchResults: List<Book>?) {
-        submitList(searchResults)
-    }
 }

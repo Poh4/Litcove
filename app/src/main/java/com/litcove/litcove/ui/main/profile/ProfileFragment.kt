@@ -71,6 +71,16 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
+        val buttonChangePassword: MaterialButton = binding.buttonChangePassword
+        buttonChangePassword.setOnClickListener {
+            startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))
+        }
+
+        val buttonForgotPassword: MaterialButton = binding.buttonForgotPassword
+        buttonForgotPassword.setOnClickListener {
+            startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
+        }
+
         val buttonChangeInterests: MaterialButton = binding.buttonChangeInterests
         buttonChangeInterests.setOnClickListener {
             startActivity(Intent(requireContext(), ChooseInterestsActivity::class.java))
