@@ -20,6 +20,7 @@ import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentProfileBinding
+import com.litcove.litcove.ui.authentication.ChooseInterestsActivity
 import com.litcove.litcove.ui.authentication.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -68,6 +69,11 @@ class ProfileFragment : Fragment() {
         val buttonEditProfile: MaterialButton = binding.buttonEditProfile
         buttonEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+
+        val buttonChangeInterests: MaterialButton = binding.buttonChangeInterests
+        buttonChangeInterests.setOnClickListener {
+            startActivity(Intent(requireContext(), ChooseInterestsActivity::class.java))
         }
 
         val switchTheme: MaterialSwitch = binding.switchTheme

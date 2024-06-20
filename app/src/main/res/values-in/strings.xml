@@ -83,4 +83,6 @@
     <string name="search">Cari</string>
     <string name="searched_book_image">Gambar Buku yang Dicari</string>
     <string name="no_books_found">Tidak ada buku yang ditemukan</string>
+    <string name="change_interests">Ubah Minat</string>
+    <string name="select_at_least_one">Pilih setidaknya satu</string>
 </resources>

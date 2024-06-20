@@ -83,4 +83,6 @@
     <string name="search">Search</string>
     <string name="searched_book_image">Searched Book Image</string>
     <string name="no_books_found">No books found</string>
+    <string name="change_interests">Change Interests</string>
+    <string name="select_at_least_one">Select at least one</string>
 </resources>
