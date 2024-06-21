@@ -117,46 +117,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionCardView" />
-
-        <TextView
-            android:id="@+id/labelReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/review"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/reviewCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/containerBackground"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelReview">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/reviewRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                tools:listitem="@layout/item_review" />
-
-        </com.google.android.material.card.MaterialCardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

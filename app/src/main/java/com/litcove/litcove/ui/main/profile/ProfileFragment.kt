@@ -3,6 +3,7 @@ package com.litcove.litcove.ui.main.profile
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -173,6 +174,7 @@ class ProfileFragment : Fragment() {
             } else {
                 Toast.makeText(context,
                     getString(R.string.failed_to_delete_account), Toast.LENGTH_LONG).show()
+                Log.e("ProfileFragment", "Failed to delete account", task.exception)
             }
         }
     }

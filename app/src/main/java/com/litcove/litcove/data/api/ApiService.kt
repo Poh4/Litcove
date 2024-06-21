@@ -6,6 +6,14 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
+
+    @GET("volumes")
+    suspend fun getBookRecommendation(
+        @Query("q") recommendation: String,
+        @Query("startIndex") startIndex: Int,
+        @Query("maxResults") maxResults: Int
+    ): Response<BookResponse>
+
     @GET("volumes")
     suspend fun getBooksBySubject(
         @Query("q") subject: String,

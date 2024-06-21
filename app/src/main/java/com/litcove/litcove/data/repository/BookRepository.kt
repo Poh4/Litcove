@@ -9,6 +9,12 @@ class BookRepository @Inject constructor(
     private val apiService: ApiService
 ) {
 
+    //get book recommendation
+    suspend fun getBookRecommendation(recommendation: String, startIndex: Int, maxResults: Int): Response<BookResponse> {
+        val validMaxResults = if (maxResults > 40) 40 else maxResults
+        return apiService.getBookRecommendation(recommendation, startIndex, validMaxResults)
+    }
+
     suspend fun getBooksBySubject(subject: String, startIndex: Int, maxResults: Int): Response<BookResponse> {
         val validMaxResults = if (maxResults > 40) 40 else maxResults
         return apiService.getBooksBySubject(subject, startIndex, validMaxResults)

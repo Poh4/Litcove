@@ -2,6 +2,7 @@ package com.litcove.litcove.ui.main.explore
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +15,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentExploreBinding
 import com.litcove.litcove.utils.HorizontalSpacingItemDecoration
+import com.litcove.litcove.data.model.Book
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private var currentGenreFragment: GenreFragment? = null
 
@@ -43,11 +42,16 @@ class ExploreFragment : Fragment() {
             }
         }
 
-        val recommendations = mutableListOf<String>()
-        for (i in 1..10) {
-            recommendations.add("https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg")
-        }
-        val recommendationAdapter = RecommendationAdapter(recommendations)
+        val recommendationAdapter = RecommendationAdapter(mutableListOf(), object : RecommendationAdapter.OnBookClickListener {
+            override fun onBookClick(book: Book) {
+                val action = ExploreFragmentDirections.actionExploreFragmentToBookDetailsFragment(book)
+                try {
+                    findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.e("ExploreFragment", "Failed to navigate to book details: $e")
+                }
+            }
+        })
         binding.recyclerViewRecommendation.adapter = recommendationAdapter
 
         val horizontalSpacingItemDecoration = HorizontalSpacingItemDecoration(dpToPx(requireContext()))
@@ -72,6 +76,12 @@ class ExploreFragment : Fragment() {
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = interests[position]
             }.attach()
+        }
+
+        exploreViewModel.books.observe(viewLifecycleOwner) { books ->
+            books?.let {
+                recommendationAdapter.updateData(it)
+            }
         }
 
         return root
