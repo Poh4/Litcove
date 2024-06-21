@@ -2,22 +2,28 @@ package com.litcove.litcove.ui.main.explore
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentExploreBinding
 import com.litcove.litcove.utils.HorizontalSpacingItemDecoration
+import com.litcove.litcove.data.model.Book
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private var currentGenreFragment: GenreFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,36 +36,53 @@ class ExploreFragment : Fragment() {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val tabLayout: TabLayout = binding.tabLayout
-        val genres = arrayOf("Romance", "Comedy", "Fiction", "Horror")
-
-        for (genre in genres) {
-            tabLayout.addTab(tabLayout.newTab().setText(genre))
+        binding.searchInput.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                findNavController().navigate(R.id.actionExploreFragmentToSearchFragment)
+            }
         }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // Ganti genre berdasarkan tab yang dipilih
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // Opsional: lakukan sesuatu saat tab tidak lagi dipilih
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                // Opsional: lakukan sesuatu saat tab dipilih kembali
+        val recommendationAdapter = RecommendationAdapter(mutableListOf(), object : RecommendationAdapter.OnBookClickListener {
+            override fun onBookClick(book: Book) {
+                val action = ExploreFragmentDirections.actionExploreFragmentToBookDetailsFragment(book)
+                try {
+                    findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.e("ExploreFragment", "Failed to navigate to book details: $e")
+                }
             }
         })
-
-        val recommendations = mutableListOf<String>()
-        for (i in 1..10) {
-            recommendations.add("https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg")
-        }
-        val recommendationAdapter = RecommendationAdapter(recommendations)
         binding.recyclerViewRecommendation.adapter = recommendationAdapter
 
         val horizontalSpacingItemDecoration = HorizontalSpacingItemDecoration(dpToPx(requireContext()))
         binding.recyclerViewRecommendation.addItemDecoration(horizontalSpacingItemDecoration)
+
+        val tabLayout: TabLayout = binding.tabLayout
+        val viewPager: ViewPager2 = binding.viewPager
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                currentGenreFragment = (viewPager.adapter as GenrePagerAdapter).createFragment(position) as GenreFragment
+                if (currentGenreFragment?.isAdded == true) {
+                    currentGenreFragment?.viewModel?.refresh()
+                }
+            }
+        })
+
+        exploreViewModel.interests.observe(viewLifecycleOwner) { interests ->
+            viewPager.adapter = GenrePagerAdapter(requireActivity(), interests.toTypedArray())
+            viewPager.offscreenPageLimit = interests.size
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = interests[position]
+            }.attach()
+        }
+
+        exploreViewModel.books.observe(viewLifecycleOwner) { books ->
+            books?.let {
+                recommendationAdapter.updateData(it)
+            }
+        }
 
         return root
     }

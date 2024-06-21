@@ -4,17 +4,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.litcove.litcove.data.model.Book
 import com.litcove.litcove.databinding.ItemRecommendationBinding
 
-class RecommendationAdapter(private val recommendations: List<String>) : RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
+class RecommendationAdapter(private var recommendations: List<Book>, private val listener : OnBookClickListener) : RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
+
+    interface OnBookClickListener {
+        fun onBookClick(book: Book)
+    }
 
     class RecommendationViewHolder(private val binding: ItemRecommendationBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(recommendation: String) {
+        fun bind(book: Book, listener: OnBookClickListener) {
             Glide.with(binding.imageViewRecommendation.context)
-                .load(recommendation)
+                .load(book.thumbnail)
                 .into(binding.imageViewRecommendation)
-            binding.textViewTitle.text = "Soul"
-            binding.textViewAuthor.text = "Olivia Wilson"
+            binding.textViewTitle.text = book.title
+            binding.textViewAuthor.text = book.authors.joinToString(", ")
+
+            itemView.setOnClickListener {
+                listener.onBookClick(book)
+            }
         }
     }
 
@@ -25,10 +34,15 @@ class RecommendationAdapter(private val recommendations: List<String>) : Recycle
     }
 
     override fun onBindViewHolder(holder: RecommendationViewHolder, position: Int) {
-        holder.bind(recommendations[position])
+        holder.bind(recommendations[position], listener)
     }
 
     override fun getItemCount(): Int {
         return recommendations.size
+    }
+
+    fun updateData(newBooks: List<Book>) {
+        recommendations = newBooks
+        notifyItemChanged(0, recommendations.size)
     }
 }

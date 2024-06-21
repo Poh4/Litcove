@@ -3,6 +3,7 @@ package com.litcove.litcove.ui.main.profile
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.litcove.litcove.R
 import com.litcove.litcove.databinding.FragmentProfileBinding
+import com.litcove.litcove.ui.authentication.ChooseInterestsActivity
 import com.litcove.litcove.ui.authentication.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,8 +33,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,16 +44,17 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
         profileViewModel.loadThemeSetting()
 
-        val imageProfile = binding.imageProfile
-        profileViewModel.imageProfile.observe(viewLifecycleOwner) {
-            Glide.with(this)
-                .load(it)
-                .into(imageProfile)
-        }
-
-        val textUsername: TextView = binding.textUsername
-        profileViewModel.textUsername.observe(viewLifecycleOwner) {
-            textUsername.text = it
+        val imageAvatar = binding.imageAvatar
+        profileViewModel.imageAvatar.observe(viewLifecycleOwner) { imageUrl ->
+            if (imageUrl.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(R.drawable.ic_no_profile)
+                    .into(imageAvatar)
+            } else {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .into(imageAvatar)
+            }
         }
 
         val textName: TextView = binding.textName
@@ -63,7 +64,27 @@ class ProfileFragment : Fragment() {
 
         val textJoinedSince: TextView = binding.textJoinedSince
         profileViewModel.textJoinedSince.observe(viewLifecycleOwner) { joinedSince ->
-            "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = joinedSince }
+            "${getString(R.string.joined_since)} $joinedSince".also { textJoinedSince.text = it }
+        }
+
+        val buttonEditProfile: MaterialButton = binding.buttonEditProfile
+        buttonEditProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+
+        val buttonChangePassword: MaterialButton = binding.buttonChangePassword
+        buttonChangePassword.setOnClickListener {
+            startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))
+        }
+
+        val buttonForgotPassword: MaterialButton = binding.buttonForgotPassword
+        buttonForgotPassword.setOnClickListener {
+            startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
+        }
+
+        val buttonChangeInterests: MaterialButton = binding.buttonChangeInterests
+        buttonChangeInterests.setOnClickListener {
+            startActivity(Intent(requireContext(), ChooseInterestsActivity::class.java))
         }
 
         val switchTheme: MaterialSwitch = binding.switchTheme
@@ -92,12 +113,12 @@ class ProfileFragment : Fragment() {
             showDeleteAccountDialog()
         }
 
-        profileViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            if (errorMessage != null) {
-                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-            }
-        }
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        profileViewModel.fetchUser()
     }
 
     override fun onDestroyView() {
@@ -153,6 +174,7 @@ class ProfileFragment : Fragment() {
             } else {
                 Toast.makeText(context,
                     getString(R.string.failed_to_delete_account), Toast.LENGTH_LONG).show()
+                Log.e("ProfileFragment", "Failed to delete account", task.exception)
             }
         }
     }
